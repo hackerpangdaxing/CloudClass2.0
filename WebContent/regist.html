@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+		$("#demo").click(function(){
+			$.ajax({
+				url:"addUser.do",
+				data:{
+					username:$("#username").val(),
+					password:$("#password").val(),
+					flag:$("#flag").val(),
+				},
+				/* 0注册失败 1注册成功 2用户已存在 */
+				success:function(data){
+					if(data==0){
+						alert("注册失败");
+						window.location.href="error.html"
+					}
+					else if(data==1){
+						alert(1)
+						window.location.href="login.jsp";
+					}else if(data==2){
+						alert(2)
+						window.location.href="error.html";
+					}
+				},
+				error:function(){
+						alert("error");	
+				}
+			})
+		})
+	})
+	
+</script>
+</head>
+<body>
+<input type="text" name="username" id="username">
+<input type="text" name="password" id="password">
+<input type="text" name="flag" id="flag" value="teacher">
+<input type="submit" id="demo" value="登录">
+</body>
+</html>
